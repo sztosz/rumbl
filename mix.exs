@@ -38,6 +38,7 @@ defmodule Rumbl.Mixfile do
      {:gettext, "~> 0.9"},
      {:cowboy, "~> 1.0"},
      {:comeonin, "~> 2.0"},
+     {:dogma, "~> 0.1", only: :dev},
      {:credo, "~> 0.4", only: [:dev, :test]}]
   end
 
