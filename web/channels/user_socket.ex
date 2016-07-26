@@ -1,10 +1,10 @@
 defmodule Rumbl.UserSocket do
   use Phoenix.Socket
 
-  ## Channels
+  # Channels
   # channel "rooms:*", Rumbl.RoomChannel
 
-  ## Transports
+  # Transports
   transport :websocket, Phoenix.Transports.WebSocket
   # transport :longpoll, Phoenix.Transports.LongPoll
 

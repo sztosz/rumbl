@@ -2,7 +2,11 @@ defmodule Rumbl.VideoControllerTest do
   use Rumbl.ConnCase
 
   alias Rumbl.Video
-  @valid_attrs %{description: "some content", title: "some content", url: "some content"}
+  @valid_attrs %{
+    description: "some content",
+    title: "some content",
+    url: "some content"
+  }
   @invalid_attrs %{}
 
   test "lists all entries on index", %{conn: conn} do
@@ -21,7 +25,8 @@ defmodule Rumbl.VideoControllerTest do
     assert Repo.get_by(Video, @valid_attrs)
   end
 
-  test "does not create resource and renders errors when data is invalid", %{conn: conn} do
+  test "does not create resource and renders errors when data is invalid",
+    %{conn: conn} do
     conn = post conn, video_path(conn, :create), video: @invalid_attrs
     assert html_response(conn, 200) =~ "New video"
   end
@@ -44,14 +49,16 @@ defmodule Rumbl.VideoControllerTest do
     assert html_response(conn, 200) =~ "Edit video"
   end
 
-  test "updates chosen resource and redirects when data is valid", %{conn: conn} do
+  test "updates chosen resource and redirects when data is valid",
+    %{conn: conn} do
     video = Repo.insert! %Video{}
     conn = put conn, video_path(conn, :update, video), video: @valid_attrs
     assert redirected_to(conn) == video_path(conn, :show, video)
     assert Repo.get_by(Video, @valid_attrs)
   end
 
-  test "does not update chosen resource and renders errors when data is invalid", %{conn: conn} do
+  test "does not update chosen res and renders errors when data is invalid",
+    %{conn: conn} do
     video = Repo.insert! %Video{}
     conn = put conn, video_path(conn, :update, video), video: @invalid_attrs
     assert html_response(conn, 200) =~ "Edit video"
