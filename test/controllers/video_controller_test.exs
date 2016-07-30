@@ -46,10 +46,7 @@ defmodule Rumb.VideoControllerTest do
 
   @tag login_as: "max"
   test "creates user videos and redirects", %{conn: conn, user: user} do
-    category = insert_category(%{name: "Drama"})
-    attrs = Map.merge(@valid_attrs, %{category_id: category.id})
-
-    conn = post(conn, video_path(conn, :create), video: attrs)
+    conn = post(conn, video_path(conn, :create), video: valid_params_map)
     assert redirected_to(conn) == video_path(conn, :index)
     assert Repo.get_by!(Video, @valid_attrs).user_id == user.id
   end
@@ -62,7 +59,32 @@ defmodule Rumb.VideoControllerTest do
     assert video_count(Video) == count_before
   end
 
+  @tag login_as: "max"
+  test "authorizes actions against access by other users", %{conn: conn, user: owner} do
+    video = insert_video(owner, valid_params_map)
+    non_owner = insert_user(username: "sneaky")
+    conn = assign(conn, :current_user, non_owner)
+
+    assert_error_sent(:not_found, fn ->
+      get(conn, video_path(conn, :show, video))
+    end)
+    assert_error_sent(:not_found, fn ->
+      get(conn, video_path(conn, :edit, video))
+    end)
+    assert_error_sent(:not_found, fn ->
+      get(conn, video_path(conn, :update, video, video: @valid_attrs))
+    end)
+    assert_error_sent(:not_found, fn ->
+      get(conn, video_path(conn, :delete, video))
+    end)
+  end
+
   defp video_count(query) do
     Repo.one(from v in query, select: count(v.id))
+  end
+
+  defp valid_params_map do
+    category = insert_category(%{name: "Drama"})
+    Map.merge(@valid_attrs, %{category_id: category.id})
   end
 end
