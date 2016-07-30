@@ -6,7 +6,8 @@ defmodule Rumbl.VideoTest do
   @valid_attrs %{
     description: "some content",
     title: "some content",
-    url: "some content"
+    url: "some content",
+    category_id: 1,
   }
   @invalid_attrs %{}
 
