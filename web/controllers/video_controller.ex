@@ -4,8 +4,6 @@ defmodule Rumbl.VideoController do
   alias Rumbl.Video
   alias Rumbl.Category
 
-  import Ecto.Query
-
   plug :scrub_params, "video" when action in [:create, :update]
   plug :load_categories, "category" when action in [
     :new, :create, :edit, :update

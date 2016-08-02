@@ -22,7 +22,7 @@ defmodule Rumbl.Web do
 
       import Ecto
       import Ecto.Changeset
-      import Ecto.Query, only: [from: 1, from: 2]
+      import Ecto.Query
     end
   end
 
@@ -34,7 +34,7 @@ defmodule Rumbl.Web do
       alias Rumbl.Auth
 
       import Ecto
-      import Ecto.Query, only: [from: 1, from: 2]
+      import Ecto.Query
 
       import Rumbl.Router.Helpers
       import Rumbl.Gettext
