@@ -30,3 +30,8 @@ config :phoenix, :generators,
   binary_id: false
 
 config :rumbl, ecto_repos: [Rumbl.Repo]
+
+config :phoenix, :template_engines,
+    slim: PhoenixSlime.Engine,
+    slime: PhoenixSlime.Engine
+config :slime, :keep_lines, true
