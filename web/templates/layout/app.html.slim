@@ -23,7 +23,8 @@ html lang="en"
         span class="logo"
       p class="alert alert-info" role="alert" = get_flash(@conn, :info)
       p class="alert alert-danger" role="alert" = get_flash(@conn, :error)
-
       main role="main"
         = render @view_module, @view_template, assigns
+    / script src=static_path(@conn,"/js/token.js")
+    = render "token.html", token: assigns[:user_token]
     script src=static_path(@conn,"/js/app.js")
