@@ -2,7 +2,6 @@ defmodule Rumbl.User do
   use Rumbl.Web, :model
 
   alias Comeonin.Bcrypt
-  alias Rumbl.Video
   alias Ecto.Changeset
 
   schema("users") do
@@ -10,7 +9,8 @@ defmodule Rumbl.User do
     field :username, :string
     field :password, :string, virtual: true
     field :password_hash, :string
-    has_many :videos, Video
+    has_many :videos, Rumbl.Video
+    has_many :annotations, Rumbl.Annotation
 
     timestamps
   end
