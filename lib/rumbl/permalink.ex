@@ -14,7 +14,7 @@ defmodule Rumbl.Permalink do
     {:ok, integer}
   end
 
-  def cat(_) do
+  def cast(_) do
     :error
   end
 
