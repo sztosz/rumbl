@@ -1,9 +1,6 @@
 defmodule Rumbl do
   use Application
 
-  alias Rumbl.Endpoint
-  alias Rumbl.Repo
-
   # See http://elixir-lang.org/docs/stable/elixir/Application.html
   # for more information on OTP Applications
   def start(_type, _args) do
@@ -11,9 +8,11 @@ defmodule Rumbl do
 
     children = [
       # Start the endpoint when the application starts
-      supervisor(Endpoint, []),
+      supervisor(Rumbl.Endpoint, []),
+      # Start the InfoSys service
+      supervisor(Rumbl.InfoSys.Supervisor, [])
       # Start the Ecto repository
-      supervisor(Repo, []),
+      supervisor(Rumbl.Repo, []),
       # Here you could define other workers and supervisors as children
       # worker(Rumbl.Worker, [arg1, arg2, arg3]),
     ]
