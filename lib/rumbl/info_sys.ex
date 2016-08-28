@@ -70,5 +70,6 @@ defmodule Rumbl.InfoSys do
       :timedout -> :ok
     after
       0 -> :ok
+    end
   end
 end
