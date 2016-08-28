@@ -41,7 +41,8 @@ defmodule Rumbl.Mixfile do
      {:dogma, "~> 0.1", only: :dev},
      {:credo, "~> 0.4", only: [:dev, :test]},
      {:plug, "~> 1.2-rc", override: true},
-     {:phoenix_slime, "~> 0.7.0"}]
+     {:phoenix_slime, "~> 0.7.0"},
+     {:sweet_xml, "~> 0.6.1"}]
   end
 
   # Aliases are shortcut or tasks specific to the current project.
